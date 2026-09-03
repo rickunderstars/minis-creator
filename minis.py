@@ -87,13 +87,14 @@ with open("minis.typ", "w") as file:
         """
 #set page(paper: "a4", flipped: true, margin: 1cm, columns: 2)
 
-#let couple(lft, rgt) = {
-	grid(
-		columns: (1fr, 1fr),
-		column-gutter: 10pt,
-		align: (right, left),
-		lft, rgt,
-	)
+#let couple(lft, rgt) = context {
+  let h = measure(lft).height
+  grid(
+    columns: (1fr, 0.7cm, 1fr),
+    column-gutter: 0pt,
+    align: (right, center, left),
+    lft, line(stroke: 1pt + luma(222), angle: 90deg, length: h), rgt,
+  )
 }
 
 """

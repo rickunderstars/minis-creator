@@ -1,13 +1,14 @@
 
 #set page(paper: "a4", flipped: true, margin: 1cm, columns: 2)
 
-#let couple(lft, rgt) = {
-	grid(
-		columns: (1fr, 1fr),
-		column-gutter: 16pt,
-		align: (right, left),
-		lft, rgt,
-	)
+#let couple(lft, rgt) = context {
+  let h = measure(lft).height
+  grid(
+    columns: (1fr, 0.7cm, 1fr),
+    column-gutter: 0pt,
+    align: (right, center, left),
+    lft, line(stroke: 1pt + luma(222), angle: 90deg, length: h), rgt,
+  )
 }
 
 
@@ -36,14 +37,6 @@
 
 
 #couple(
-  image("imgs/elementale-alpha.png", width: 6.0cm, fit: "contain"),
-  image("imgs/elementale-back.png", width: 6.0cm, fit: "contain"),
-)
-
-#v(2cm)
-
-
-#couple(
   image("imgs/gorgone-alpha.png", width: 3.0cm, fit: "contain"),
   image("imgs/gorgone-back.png", width: 3.0cm, fit: "contain"),
 )
@@ -52,8 +45,16 @@
 
 
 #couple(
-  image("imgs/scatola-alpha.png", width: 4.5cm, fit: "contain"),
-  image("imgs/scatola-back.png", width: 4.5cm, fit: "contain"),
+  image("imgs/melma-alpha.png", width: 2.5cm, fit: "contain"),
+  image("imgs/melma-back.png", width: 2.5cm, fit: "contain"),
+)
+
+#v(2cm)
+
+
+#couple(
+  image("imgs/oracolo-alpha.png", width: 4.5cm, fit: "contain"),
+  image("imgs/oracolo-back.png", width: 4.5cm, fit: "contain"),
 )
 
 #v(2cm)
@@ -68,8 +69,8 @@
 
 
 #couple(
-  image("imgs/teschio-alpha.png", width: 2.5cm, fit: "contain"),
-  image("imgs/teschio-back.png", width: 2.5cm, fit: "contain"),
+  image("imgs/trent-alpha.png", width: 3.0cm, fit: "contain"),
+  image("imgs/trent-back.png", width: 3.0cm, fit: "contain"),
 )
 
 #v(2cm)
