@@ -6,7 +6,7 @@ end
 
 
 set -l model birefnet-general
-set -l outdir rmbg
+set -l outdir imgs
 mkdir -p $outdir
 
 
