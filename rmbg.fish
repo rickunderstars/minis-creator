@@ -1,15 +1,17 @@
 #!/usr/bin/env fish
 
-if test (count $argv) -eq 0
+set n_args (count $argv)
+
+if test $n_args -eq 0
 	exit 1
 end
 
 
 set -l model birefnet-general
-set -l outdir imgs
+set -l outdir {imgs_dir}
 mkdir -p $outdir
 
-
+set i 1
 for img in $argv
 	set -l dir (dirname $img)
 	set -l base (basename $img)
@@ -19,16 +21,18 @@ for img in $argv
 	set -l alpha $name-alpha.$ext
 	set -l back $name-back.$ext
 
-	echo "Working on '$img':"
+	echo "[$i/$n_args] >> Working on '$img':"
 
-	echo "Removing background..." &&
+	echo "	- removing background..." &&
 	rembg i -m $model $img $outdir/$alpha &&
 
-	echo "Trimming borders..." &&
+	echo "	- trimming borders..." &&
 	magick $outdir/$alpha -fuzz 1% -trim +repage -bordercolor none -border 10 $outdir/$alpha &&
 
-	echo "Generating back image..." &&
+	echo "	- generating back image...\n" &&
 	magick $outdir/$alpha -fill black -colorize 100% -flop $outdir/$back
+
+	set i (math $i + 1)
 end
 
-echo "Done."
+echo "Image elaboration complete!\n\n"
