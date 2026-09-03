@@ -57,30 +57,35 @@ print("> Writing typst document...\n")
 with open("minis.typ", "w") as file:
     file.write(
         """
-		#set page(paper: "a4", flipped: false, margin: 1cm)
+#set page(paper: "a4", flipped: true, margin: 1cm, columns: 2)
 
-		#let couple(lft, rgt) = {
-			grid(
-				columns: (1fr, 1fr),
-				column-gutter: 0pt,
-				align: (right, left),
-				lft, rgt,
-			)
-		}
-	"""
+#let couple(lft, rgt) = {
+	grid(
+		columns: (1fr, 1fr),
+		column-gutter: 16pt,
+		align: (right, left),
+		lft, rgt,
+	)
+}
+
+"""
     )
 
     for mini in args:
         mini_name = Path(mini).stem
         file.write(
             f"""
-				#couple(
-				  image("{imgs_dir}/{mini_name}-alpha.png", height: 7cm, fit: "contain"),
-				  image("{imgs_dir}/{mini_name}-back.png", height: 7cm, fit: "contain"),
-				)
 
-				#v(1.5cm)
-			"""
+#v(1cm)
+
+#couple(
+  image("{imgs_dir}/{mini_name}-alpha.png", width: 3cm, fit: "contain"),
+  image("{imgs_dir}/{mini_name}-back.png", width: 3cm, fit: "contain"),
+)
+
+#v(1cm)
+
+"""
         )
 
-print("Done!")
+print("Done!\n")
