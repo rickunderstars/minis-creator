@@ -11,16 +11,14 @@ creatures = []
 
 for mini in args:
     mini_name = Path(mini).stem
-    size = input(
-        f"""
+    size = input(f"""
  How big is '{mini_name}'?
 	1 -> small
 	2 -> medium
 	3 -> large
 	4 -> huge
 
-~> """
-    )
+~> """)
 
     if 0 <= int(size) <= 4:
         creatures.append((mini_name, int(size)))
@@ -83,8 +81,7 @@ subprocess.run(["fish", "-c", rmbg], check=True)
 print("> Writing typst document...\n")
 
 with open("minis.typ", "w") as file:
-    file.write(
-        """
+    file.write("""
 #set page(paper: "a4", flipped: true, margin: 1cm, columns: 2)
 
 #let couple(lft, rgt) = context {
@@ -97,8 +94,7 @@ with open("minis.typ", "w") as file:
   )
 }
 
-"""
-    )
+""")
 
     for mini in creatures:
         width = 2
@@ -112,8 +108,7 @@ with open("minis.typ", "w") as file:
             case 4:
                 width = 6.0
 
-        file.write(
-            f"""
+        file.write(f"""
 #couple(
   image("{imgs_dir}/{mini[0]}-alpha.png", width: {width}cm, fit: "contain"),
   image("{imgs_dir}/{mini[0]}-back.png", width: {width}cm, fit: "contain"),
@@ -121,8 +116,7 @@ with open("minis.typ", "w") as file:
 
 #v(2cm)
 
-"""
-        )
+""")
 
 print("> Compiling typst document...\n")
 

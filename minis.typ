@@ -21,8 +21,8 @@
 
 
 #couple(
-  image("imgs/caduto-alpha.png", width: 6.0cm, fit: "contain"),
-  image("imgs/caduto-back.png", width: 6.0cm, fit: "contain"),
+  image("imgs/caduto-alpha.png", width: 4.5cm, fit: "contain"),
+  image("imgs/caduto-back.png", width: 4.5cm, fit: "contain"),
 )
 
 #v(2cm)
